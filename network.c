@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "main.h"
+#include "shared.h"
 
 static int server[N_SERVERS];
 static uint16_t twitch_port = 6667;

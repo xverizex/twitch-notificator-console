@@ -5,6 +5,7 @@
 #include "network.h"
 #include "main.h"
 #include "parser.h"
+#include "shared.h"
 
 
 extern struct zl_config *main_cfg;

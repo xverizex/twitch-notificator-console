@@ -4,7 +4,7 @@ project (twitch_terminal)
 
 include (FindPkgConfig)
 
-add_executable (twitch_terminal main.c com.c config.c network.c parser.c sound.c)
+add_executable (twitch_terminal main.c com.c config.c network.c parser.c sound.c plugin.c)
 
 add_subdirectory (zlc_config)
 

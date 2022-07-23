@@ -11,12 +11,15 @@
 #include "main.h"
 #include "parser.h"
 #include "com.h"
+#include "shared.h"
 
 struct zl_config *main_cfg;
 
 static pthread_t *ts;
 
 pthread_mutex_t mutex;
+
+extern void manager_plugin_init (const char **plugins, int size);
 
 struct server {
 	int rule;
@@ -60,6 +63,10 @@ int main (int argc, char **argv) {
 	main_cfg = config_init ();
 
 	pthread_mutex_init (&mutex, NULL);
+
+	int size_plugins;
+	const char **plugins = zl_config_get_array_string (main_cfg, GROUP_SHARED, OPT_SHARED_PLUGINS, &size_plugins);
+	manager_plugin_init (plugins, size_plugins);
 
 	ts = calloc (N_SERVERS, sizeof (pthread_t));
 
