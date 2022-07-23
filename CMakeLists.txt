@@ -13,7 +13,7 @@ add_subdirectory (answers)
 add_subdirectory (plugins/test)
 
 pkg_check_modules (AL "openal")
-pkg_check_modules (SQLITE "sqlite3");
+pkg_check_modules (SQLITE "sqlite3")
 
 target_include_directories (twitch_terminal PUBLIC
 	"."
