@@ -65,7 +65,7 @@ int main (int argc, char **argv) {
 	pthread_mutex_init (&mutex, NULL);
 
 	int size_plugins;
-	const char **plugins = zl_config_get_array_string (main_cfg, GROUP_SHARED, OPT_SHARED_PLUGINS, &size_plugins);
+	const char **plugins = zl_config_get_array_string (main_cfg, GROUP_GENERAL, OPT_GENERAL_PLUGINS, &size_plugins);
 	manager_plugin_init (plugins, size_plugins);
 
 	ts = calloc (N_SERVERS, sizeof (pthread_t));

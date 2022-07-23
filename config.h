@@ -1,6 +1,6 @@
 enum Groups {
 	GROUP_TWITCH,
-	GROUP_SHARED,
+	GROUP_GENERAL,
 	N_GROUPS
 };
 
@@ -13,9 +13,9 @@ enum OptionsTwitch {
 	N_TWITCH_OPTS
 };
 
-enum OptionsShared {
-	OPT_SHARED_PLUGINS,
-	N_SHARED_OPTS
+enum OptionsGeneral {
+	OPT_GENERAL_PLUGINS,
+	N_GENERAL_OPTS
 };
 
 struct zl_config *config_init ();

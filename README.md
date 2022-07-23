@@ -8,6 +8,9 @@ Before run fill fields in twitch.conf
 
 # Config file
 ```
+[General]
+plugins = ["plugins/test/libtest.so"]
+
 [Twitch]
 tmi = "your tmi with oauth:..."
 channel = ["channel 0","channel 1"]
