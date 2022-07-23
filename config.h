@@ -1,6 +1,7 @@
 enum Groups {
 	GROUP_TWITCH,
 	GROUP_GENERAL,
+	GROUP_HISTORY,
 	N_GROUPS
 };
 
@@ -16,6 +17,12 @@ enum OptionsTwitch {
 enum OptionsGeneral {
 	OPT_GENERAL_PLUGINS,
 	N_GENERAL_OPTS
+};
+
+enum OptionsHistory {
+	OPT_HISTORY_ENABLED,
+	OPT_HISTORY_FILE_DB,
+	N_HISTORY_OPTS
 };
 
 struct zl_config *config_init ();

@@ -1,4 +1,7 @@
+#pragma once
+
 #include <stdint.h>
+#include <stdlib.h>
 
 void network_init (int index, const char *url, uint16_t port);
 void network_send (int index, const char *buffer, size_t len);

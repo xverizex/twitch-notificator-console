@@ -9,12 +9,12 @@
 void plugin_init (int *server, struct zl_config *cfg);
 
 /*
- * This is occure when is joined new user.
+ * This is occur when is joined new user.
  */
 void plugin_receive_new_join (enum SERVERS server, const char *nick, const char *room);
 
 /*
- * This is occure when is being new message.
+ * This is occur when is being new message.
  */
 void plugin_receive_new_message (enum SERVERS server, const char *room, const char *nick, const char *message);
 
