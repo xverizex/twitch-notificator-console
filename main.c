@@ -40,18 +40,22 @@ void *thread_channel (void *data_from_main_thread) {
 
 	char buffer[MAX_BUFFER];
 
+	int ret;
+
 	while (1) {
-		network_init (index, server[index].url, server[index].port);
-		com_twitch_init ();
+		if ((ret = network_init (index, server[index].url, server[index].port)) == -1) {sleep (1); continue;}
+		if ((ret = com_twitch_init ()) == -1) {network_close_connection (index); sleep (1); continue;}
 
 		while (1) {
-			int ret = network_read (index, buffer, MAX_BUFFER - 1);
+			ret = network_read (index, buffer, MAX_BUFFER - 1);
 			if (ret <= 0) break;
 			server[index].parse_func (buffer);
 	
 		}
 
 		network_close_connection (index);
+		printf ("Connection is close on %d server\n", index);
+		sleep (1);
 	}
 
 	return NULL;

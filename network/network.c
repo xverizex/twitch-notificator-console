@@ -10,7 +10,7 @@
 
 static int server[N_SERVERS];
 
-void network_init (int index, const char *site, uint16_t port) {
+int network_init (int index, const char *site, uint16_t port) {
 	struct hostent *ht = gethostbyname (site);
 
 	struct sockaddr_in s;
@@ -24,10 +24,11 @@ void network_init (int index, const char *site, uint16_t port) {
 	int ret = connect (sock, (const struct sockaddr *) &s, sizeof (s));
 	if (ret == -1) {
 		perror ("connect to twitch");
-		exit (0);
+		return -1;
 	}
 
 	server[index] = sock;
+	return 0;
 }
 
 void network_send (int index, const char *buffer, size_t len) {
