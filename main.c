@@ -13,6 +13,7 @@
 #include "com.h"
 #include "shared.h"
 #include "history.h"
+#include "lua.h"
 
 struct zl_config *main_cfg;
 
@@ -74,6 +75,7 @@ int main (int argc, char **argv) {
 	int size_plugins;
 	const char **plugins = zl_config_get_array_string (main_cfg, GROUP_GENERAL, OPT_GENERAL_PLUGINS, &size_plugins);
 	manager_plugin_init (plugins, size_plugins);
+	manager_lua_init ();
 
 	ts = calloc (N_SERVERS, sizeof (pthread_t));
 

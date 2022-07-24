@@ -31,12 +31,12 @@ int network_init (int index, const char *site, uint16_t port) {
 	return 0;
 }
 
-void network_send (int index, const char *buffer, size_t len) {
+int network_send (int index, const char *buffer, size_t len) {
 	size_t ret = write (server[index], buffer, len);
 	if (ret == -1) {
 		perror ("network_send");
-		exit (0);
 	}
+	return ret;
 }
 
 int network_read (int index, char *buffer, size_t max_buffer) {

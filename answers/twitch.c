@@ -4,7 +4,7 @@
 
 char *twitch_private_message (const char *room, const char *nick, const char *message) {
 	char *buf = calloc (2048, 1);
-	snprintf (buf, 2048, ":%s!%s@%s.tmi.twitch.tv PRIVMSG %s :%s",
+	snprintf (buf, 2048, ":%s!%s@%s.tmi.twitch.tv PRIVMSG %s :%s\n",
 			nick,
 			nick,
 			nick,

@@ -6,6 +6,7 @@
 #include "shared.h"
 #include "history.h"
 #include <pthread.h>
+#include "lua.h"
 
 static const char ping[] = "PING :tmi.twitch.tv";
 static const char pong[] = "PONG :tmi.twitch.tv";
@@ -52,8 +53,9 @@ static void parser_twitch_buffer_for_message (char *room, char *nick, char *mess
 		       );
 
 		sound_play ();
-		manager_plugin_receive_new_message (TWITCH_SERVER, room, nick, message);
 		history_add (TWITCH_SERVER, room, nick, message);
+		manager_plugin_receive_new_message (TWITCH_SERVER, room, nick, message);
+		manager_lua_receive_new_message (TWITCH_SERVER, room, nick, message);
 		pthread_mutex_unlock (&mutex);
 	}
 

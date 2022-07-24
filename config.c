@@ -13,6 +13,7 @@ struct zl_config *config_init () {
 
 	zl_config_init_group (cfg, GROUP_GENERAL, "General", N_GENERAL_OPTS);
 	zl_config_add_option (cfg, GROUP_GENERAL, OPT_GENERAL_PLUGINS, ZL_TYPE_ARRAY_STRING, "plugins", NULL);
+	zl_config_add_option (cfg, GROUP_GENERAL, OPT_GENERAL_LUA_SCRIPTS, ZL_TYPE_ARRAY_STRING, "lua_scripts", NULL);
 
 	zl_config_init_group (cfg, GROUP_HISTORY, "History", N_HISTORY_OPTS);
 	zl_config_add_option (cfg, GROUP_HISTORY, OPT_HISTORY_ENABLED, ZL_TYPE_BOOL, "enabled", false);

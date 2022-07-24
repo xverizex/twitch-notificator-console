@@ -16,6 +16,7 @@ enum OptionsTwitch {
 
 enum OptionsGeneral {
 	OPT_GENERAL_PLUGINS,
+	OPT_GENERAL_LUA_SCRIPTS,
 	N_GENERAL_OPTS
 };
 
