@@ -21,3 +21,5 @@ alert = "sound alert mono 16 bit wav file"
 enabled = false
 file = "filepath"
 ```
+# How to write plugins?
+See directory plugins/test for example. There is very simple primer to understand how to plugin works.
