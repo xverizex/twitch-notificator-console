@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <config.h>
-#include <sqlite3/sqlite.h>
+#include <sqlite3.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include "shared.h"
 #include <zlc_config/config.h>
 
 extern struct zl_config *main_cfg;
@@ -19,12 +23,6 @@ void history_init () {
 		return;
 	}
 
-	if (access (file_path, F_OK)) {
-		perror ("history db filepath");
-		s_enabled = 0;
-		return;
-	}
-
 	int ret = sqlite3_open (file_path, &s_db);
 	if (ret != SQLITE_OK) {
 		s_enabled = 0;
@@ -33,7 +31,7 @@ void history_init () {
 		return;
 	}
 
-	const char table[] = "CREATE TABLE IF NOT EXISTS history (id INT PRIMARY KEY AUTO_INCREMENT, server STRING NOT NULL, room STRING NOT NULL, user STRING NOT NULL, message STRING NOT NULL);";
+	const char table[] = "CREATE TABLE IF NOT EXISTS history (id INTEGER PRIMARY KEY AUTOINCREMENT, server STRING NOT NULL, room STRING NOT NULL, user STRING NOT NULL, message STRING NOT NULL);";
 
 	char *err_msg = NULL;
 
@@ -53,7 +51,7 @@ void history_init () {
 	}
 }
 
-static exec_query (const char *buf) {
+static void exec_query (const char *buf) {
 	char *err_msg = 0;
 	int ret = sqlite3_exec ( s_db,
 			buf,
@@ -69,7 +67,7 @@ static exec_query (const char *buf) {
 }
 
 
-static leave_quote (char **m, const char *u) {
+static void leave_quote (char **m, const char *u) {
 	int len = strlen (u);
 	int is = 0;
 	int iu = 0;
@@ -83,7 +81,7 @@ static leave_quote (char **m, const char *u) {
 			continue;
 		}
 		if (u[iu] == '\'') {
-			s[is++] = '\\';
+			s[is++] = '\'';
 			s[is++] = u[iu++];
 			continue;
 		}
@@ -94,6 +92,8 @@ static leave_quote (char **m, const char *u) {
 }
 
 void history_add (enum SERVERS server, const char *room, const char *user, const char *message) {
+	if (!s_enabled) return;
+
 	char buf[4096];
 	char *r = NULL;
 	char *u = NULL;
@@ -104,7 +104,7 @@ void history_add (enum SERVERS server, const char *room, const char *user, const
 
 	switch (server) {
 		case TWITCH_SERVER:
-			snprintf (buf, 4096, "INSERT INTO history VALUES ('TWITCH','%s','%s','%s');", r, u, m);
+			snprintf (buf, 4096, "INSERT INTO history (server,room,user,message) VALUES ('TWITCH','%s','%s','%s');", r, u, m);
 			exec_query (buf);
 			break;
 	}

@@ -16,4 +16,8 @@ tmi = "your tmi with oauth:..."
 channel = ["channel 0","channel 1"]
 nick = "nickname"
 alert = "sound alert mono 16 bit wav file"
+
+[History]
+enabled = false
+file = "filepath"
 ```

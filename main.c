@@ -12,6 +12,7 @@
 #include "parser.h"
 #include "com.h"
 #include "shared.h"
+#include "history.h"
 
 struct zl_config *main_cfg;
 
@@ -61,6 +62,8 @@ int main (int argc, char **argv) {
 
 	/* init config */
 	main_cfg = config_init ();
+
+	history_init ();
 
 	pthread_mutex_init (&mutex, NULL);
 
