@@ -9,7 +9,7 @@
 #include "lua.h"
 
 static const char ping[] = "PING :tmi.twitch.tv";
-static const char pong[] = "PONG :tmi.twitch.tv";
+static const char pong[] = "PONG :tmi.twitch.tv\r\n";
 static const char default_line[] = ":tmi.twitch.tv";
 static const char join[] = "JOIN";
 static const char msg[] = "PRIVMSG";
