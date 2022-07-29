@@ -86,8 +86,8 @@ void parser_twitch_rule (char *buffer) {
 
 	if (!strncmp (buffer, default_line, sizeof (default_line))) return;
 
-	if (!strncmp (buffer, ping, sizeof (ping))) {
-		network_send (TWITCH_SERVER, pong, sizeof (pong));
+	if (!strncmp (buffer, ping, sizeof (ping) - 1)) {
+		network_send (TWITCH_SERVER, pong, sizeof (pong) - 1);
 		return;
 	}
 
