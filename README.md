@@ -2,7 +2,7 @@
 Bot irc for twitch.
 
 # Convert mp3 to wav
-`ffmpeg -i input.mp3 -ac 1 -f wav output.wav'
+`ffmpeg -i input.mp3 -ac 1 -f wav output.wav`
 
 Before run fill fields in twitch.conf
 
